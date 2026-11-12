@@ -7,11 +7,15 @@ Jeu de négociation multijoueur (bluff, BATNA, événements surprises). Site sta
 
 ## Mode en ligne
 
-Pair-à-pair WebRTC via PeerJS : le navigateur de l'hôte fait office de serveur, les autres s'y connectent avec le code de partie (ou le QR code).
-Signalisation : serveur cloud public PeerJS (`0.peerjs.com`). Relais TURN : serveurs publics PeerJS, pour les réseaux qui bloquent la connexion directe (4G, réseaux d'entreprise).
+Relais temps réel **Supabase Realtime** (WebSocket sur le port 443) : l'hôte fait tourner la partie dans son navigateur, les joueurs lui parlent via le relais. Fonctionne quel que soit le réseau (même wifi, 4G, wifi qui isole les appareils…).
 
-L'hôte doit garder l'onglet ouvert pendant toute la partie.
+- `public/relay.js` : le transport (canal `bd:<CODE>` pour joueurs → hôte, `bd:<CODE>:<pid>` pour hôte → joueur).
+- `public/supabase.js` : supabase-js 2.119.0 (UMD), auto-hébergé.
+- Projet Supabase : `bluff-deal` (réf. `vjtkkgtpgnhxtvwslttr`), clé publiable dans `relay.js`.
+- `api/keepalive.mjs` + cron Vercel quotidien : petite requête en base pour éviter la mise en pause du projet gratuit.
+
+L'hôte doit garder l'onglet ouvert pendant la partie (un rechargement est sans risque).
 
 Paramètres d'URL :
+- `?net=peer` : ancien mode pair-à-pair WebRTC (PeerJS).
 - `?net=local` : test sur un seul ordinateur (plusieurs onglets).
-- `?peerhost=…&peerport=…&peersecure=1` : utiliser son propre PeerServer.

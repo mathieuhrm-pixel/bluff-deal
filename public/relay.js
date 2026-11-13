@@ -1,4 +1,4 @@
-// Transport « relais » pour Bluff & Deal, via Supabase Realtime (WebSocket, port 443).
+// Transport « relais » pour NegoPro, via Supabase Realtime (WebSocket, port 443).
 // Remplace la connexion WebRTC directe : il suffit que chaque appareil ait internet,
 // peu importe le wifi, la 4G ou l'isolation entre appareils.
 //

@@ -1,4 +1,4 @@
-# Bluff & Deal
+# NegoPro
 
 Jeu de négociation multijoueur (bluff, BATNA, événements surprises). Site statique déployé sur Vercel.
 
